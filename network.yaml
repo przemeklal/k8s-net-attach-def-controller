@@ -1,0 +1,23 @@
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition
+metadata:
+  name: br0
+spec:
+  servicecidr: 172.172.172.0/24
+  config: |
+    {
+      "cniVersion": "0.3.0",
+      "type": "bridge",
+      "bridge": "br0",
+      "isGateway": true,
+      "ipMasq": false,
+      "hairpinMode": true,
+      "mtu": 1450,
+      "ipam": {
+        "type": "host-local",
+        "subnet": "192.168.0.0/24",
+        "routes": [{
+          "dst": "192.168.0.0/16"
+        }]
+      }
+    }

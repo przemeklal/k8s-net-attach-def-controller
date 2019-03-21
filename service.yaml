@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: hostnames
+  annotations:
+    k8s.v1.cni.cncf.io/networks: br0
+spec:
+  selector:
+    app: hostnames
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 9376

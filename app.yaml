@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hostnames
+spec:
+  selector:
+    matchLabels:
+      app: hostnames
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: hostnames
+      annotations:
+        k8s.v1.cni.cncf.io/networks: default/br0, default/br0
+    spec:
+      containers:
+      - name: hostnames
+        image: k8s.gcr.io/serve_hostname
+        ports:
+        - containerPort: 9376
+          protocol: TCP
